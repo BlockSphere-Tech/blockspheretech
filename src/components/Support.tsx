@@ -2,6 +2,22 @@
 
 import type { SiteData } from "@/lib/api";
 import { useI18n } from "@/i18n/I18nProvider";
+import {
+  SUPPORT_EMAIL,
+  SUPPORT_MAILTO,
+  TELEGRAM_HANDLE,
+  TELEGRAM_URL,
+} from "@/data/contact";
+
+function channelHref(channel: string) {
+  if (channel === SUPPORT_EMAIL || channel.includes(".")) {
+    return `mailto:${channel}`;
+  }
+  if (channel === TELEGRAM_HANDLE || channel.startsWith("@")) {
+    return TELEGRAM_URL;
+  }
+  return SUPPORT_MAILTO;
+}
 
 export default function Support({ site }: { site: SiteData }) {
   const { t } = useI18n();
@@ -39,12 +55,19 @@ export default function Support({ site }: { site: SiteData }) {
             </div>
             <div className="mt-6 flex flex-wrap gap-2">
               {site.support.channels.map((channel) => (
-                <span
+                <a
                   key={channel}
-                  className="rounded-full border border-line bg-bg px-3 py-1 text-xs font-medium text-muted"
+                  href={channelHref(channel)}
+                  target={channel === TELEGRAM_HANDLE ? "_blank" : undefined}
+                  rel={
+                    channel === TELEGRAM_HANDLE
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
+                  className="rounded-full border border-line bg-bg px-3 py-1 text-xs font-medium text-muted transition-colors hover:border-accent/40 hover:text-accent"
                 >
                   {channel}
-                </span>
+                </a>
               ))}
             </div>
           </div>

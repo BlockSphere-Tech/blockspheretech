@@ -1,3 +1,5 @@
+import { SUPPORT_EMAIL } from "@/data/contact";
+
 export type CareerRole = {
   id: string;
   title: string;
@@ -10,7 +12,7 @@ export type CareerRole = {
 };
 
 export const CAREERS_EMAIL =
-  process.env.NEXT_PUBLIC_CAREERS_EMAIL || "careers@blockspheretech.io";
+  process.env.NEXT_PUBLIC_CAREERS_EMAIL || SUPPORT_EMAIL;
 
 export const careerRoles: CareerRole[] = [
   {

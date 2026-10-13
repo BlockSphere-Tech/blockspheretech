@@ -1,5 +1,8 @@
 import type { Locale } from "@/i18n/types";
 import type { FaqItem } from "@/data/faq";
+import { SUPPORT_EMAIL, TELEGRAM_HANDLE } from "@/data/contact";
+
+const supportChannels = [SUPPORT_EMAIL, TELEGRAM_HANDLE] as const;
 
 export const siteCopy = {
   en: {
@@ -15,7 +18,7 @@ export const siteCopy = {
       { label: "Singapore HQ", value: "2019" },
       { label: "uptime", value: "99.99%" },
     ],
-    supportChannels: ["Live chat", "Telegram", "Discord"],
+    supportChannels,
   },
   zh: {
     tagline: "企业级区块链基础设施",
@@ -30,7 +33,7 @@ export const siteCopy = {
       { label: "新加坡总部", value: "2019" },
       { label: "可用性", value: "99.99%" },
     ],
-    supportChannels: ["在线客服", "Telegram", "Discord"],
+    supportChannels,
   },
   es: {
     tagline: "Infraestructura blockchain empresarial",
@@ -45,7 +48,7 @@ export const siteCopy = {
       { label: "Sede Singapur", value: "2019" },
       { label: "disponibilidad", value: "99.99%" },
     ],
-    supportChannels: ["Chat en vivo", "Telegram", "Discord"],
+    supportChannels,
   },
 } as const;
 

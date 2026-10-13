@@ -14,6 +14,7 @@ import {
   contactThanks,
   resolveLang,
 } from "@/data/content";
+import { SUPPORT_EMAIL } from "@/data/contact";
 
 export type { Category, Product, Network, UseCase, FaqItem };
 
@@ -172,10 +173,28 @@ export function submitContact(
   locale?: Locale
 ) {
   const lang = resolveLang(locale);
-  const { name, email, message } = payload;
+  const { name, email, company, message } = payload;
 
   if (!name || !email || !message) {
     throw new Error("name, email, and message are required");
+  }
+
+  if (typeof window !== "undefined") {
+    const subject = encodeURIComponent(
+      `BlockSphere Tech inquiry from ${name}`
+    );
+    const body = encodeURIComponent(
+      [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        company ? `Company: ${company}` : null,
+        "",
+        message,
+      ]
+        .filter(Boolean)
+        .join("\n")
+    );
+    window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
   }
 
   return {

@@ -3,6 +3,12 @@
 import Logo from "./Logo";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useI18n } from "@/i18n/I18nProvider";
+import {
+  SUPPORT_EMAIL,
+  SUPPORT_MAILTO,
+  TELEGRAM_HANDLE,
+  TELEGRAM_URL,
+} from "@/data/contact";
 
 type FooterLink = { label: string; href: string };
 
@@ -63,6 +69,22 @@ export default function Footer() {
               <Logo size="md" />
             </a>
             <p className="mt-4 text-sm leading-relaxed text-muted">{t.footer.blurb}</p>
+            <div className="mt-4 space-y-1.5 text-sm">
+              <a
+                href={SUPPORT_MAILTO}
+                className="block text-muted transition-colors hover:text-ink"
+              >
+                {SUPPORT_EMAIL}
+              </a>
+              <a
+                href={TELEGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-muted transition-colors hover:text-ink"
+              >
+                {TELEGRAM_HANDLE}
+              </a>
+            </div>
             <div className="mt-5">
               <LanguageSwitcher />
             </div>

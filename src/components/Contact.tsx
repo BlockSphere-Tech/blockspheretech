@@ -3,6 +3,12 @@
 import { useState, type FormEvent } from "react";
 import { submitContact } from "@/lib/api";
 import { useI18n } from "@/i18n/I18nProvider";
+import {
+  SUPPORT_EMAIL,
+  SUPPORT_MAILTO,
+  TELEGRAM_HANDLE,
+  TELEGRAM_URL,
+} from "@/data/contact";
 
 export default function Contact() {
   const { t, locale } = useI18n();
@@ -46,6 +52,22 @@ export default function Contact() {
               {t.contact.title}
             </h2>
             <p className="mt-4 text-white/70">{t.contact.subtitle}</p>
+            <div className="mt-8 space-y-3 text-sm">
+              <a
+                href={SUPPORT_MAILTO}
+                className="block text-white/85 transition-colors hover:text-white"
+              >
+                {SUPPORT_EMAIL}
+              </a>
+              <a
+                href={TELEGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-white/85 transition-colors hover:text-white"
+              >
+                {TELEGRAM_HANDLE}
+              </a>
+            </div>
             <blockquote className="mt-10 border-l-2 border-[#6B8CFF] pl-5 text-sm leading-relaxed text-white/75 md:text-base">
               {t.contact.quote}
             </blockquote>
